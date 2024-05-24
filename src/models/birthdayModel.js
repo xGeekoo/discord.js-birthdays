@@ -106,6 +106,17 @@ birthdaySchema.virtual('isBirthday').get(function () {
   return this.month === currentMonth && this.day === currentDay;
 });
 
+birthdaySchema.pre(/^find/, function (next) {
+  console.log('test');
+  this.find({ isPresent: true });
+  next();
+});
+
+birthdaySchema.pre('aggregate', function (next) {
+  this.pipeline().unshift({ $match: { isPresent: true } });
+  next();
+});
+
 birthdaySchema.statics.getNumPages = async function ({ month, pageSize = 3 }) {
   const arr = await this.aggregate([
     {
