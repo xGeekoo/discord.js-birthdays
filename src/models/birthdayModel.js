@@ -106,11 +106,11 @@ birthdaySchema.virtual('isBirthday').get(function () {
   return this.month === currentMonth && this.day === currentDay;
 });
 
-birthdaySchema.pre(/^find/, function (next) {
-  console.log('test');
-  this.find({ isPresent: true });
-  next();
-});
+// birthdaySchema.pre(/^find/, function (next) {
+//   console.log('test');
+//   this.find({ isPresent: true });
+//   next();
+// });
 
 birthdaySchema.pre('aggregate', function (next) {
   this.pipeline().unshift({ $match: { isPresent: true } });

@@ -7,7 +7,7 @@ exports.once = true;
 exports.execute = async client => {
   async function handleBirthdays() {
     try {
-      const birthdays = await Birthday.find();
+      const birthdays = await Birthday.find({ isPresent: true });
       const membersId = birthdays.map(birthday => birthday._id);
       const members = await client.guilds.cache
         .get(process.env.GUILD_ID)
