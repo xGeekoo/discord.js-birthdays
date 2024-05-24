@@ -82,8 +82,8 @@ const birthdaySchema = new mongoose.Schema(
     },
     createdAt: {
       type: Date,
-      // default: () => Date.now()
-      default: () => new Date(2020, getRandomInt(0, 11), getRandomInt(1, 28))
+      default: () => Date.now()
+      // default: () => new Date(2020, getRandomInt(0, 11), getRandomInt(1, 28))
     }
   },
   { toJSON: { virtuals: true }, toObject: { virtuals: true }, id: false }
