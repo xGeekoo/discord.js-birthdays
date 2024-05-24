@@ -4,6 +4,8 @@ require('dotenv').config({ path: path.join(__dirname, '..', 'config.env') });
 const mongoose = require('mongoose');
 const client = require('./client');
 
+mongoose.set({ runValidators: true, returnOriginal: false });
+
 (async () => {
   try {
     await mongoose.connect(process.env.DB);

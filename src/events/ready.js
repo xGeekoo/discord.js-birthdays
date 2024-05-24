@@ -21,11 +21,9 @@ exports.execute = async client => {
         if (birthday.isBirthday && !birthday.isAnnounced) {
           promises.push(
             (async () => {
-              await Birthday.findByIdAndUpdate(
-                member.id,
-                { isAnnounced: true },
-                { runValidators: true }
-              );
+              await Birthday.findByIdAndUpdate(member.id, {
+                isAnnounced: true
+              });
               await member.roles.add('1243659378645663835');
               await channel.send(
                 `Aujourd'hui c'est l'anniversaire à <@${member.id}>, <@${member.id}>`
@@ -37,11 +35,9 @@ exports.execute = async client => {
         if (!birthday.isBirthday && birthday.isAnnounced) {
           promises.push(
             (async () => {
-              await Birthday.findByIdAndUpdate(
-                member.id,
-                { isAnnounced: false },
-                { runValidators: true }
-              );
+              await Birthday.findByIdAndUpdate(member.id, {
+                isAnnounced: false
+              });
               await member.roles.remove('1243659378645663835');
             })()
           );
